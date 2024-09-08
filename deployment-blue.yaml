@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-price-blue
+  labels:
+    app: crypto-price
+    version: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crypto-price
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: crypto-price
+        version: blue
+    spec:
+      containers:
+      - name: crypto-price-container
+        image: your-dockerhub-username/crypto-price-app:blue # Replace with your image
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
