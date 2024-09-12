@@ -2,11 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: crypto-price-green
-  labels:
-    app: crypto-price
-    version: green
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: crypto-price
@@ -18,19 +15,7 @@ spec:
         version: green
     spec:
       containers:
-      - name: crypto-price-container
-        image: your-dockerhub-username/crypto-price-app:green # Replace with your image
+      - name: crypto-price
+        image: <your-ecr-repository-url>:latest
         ports:
         - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 20

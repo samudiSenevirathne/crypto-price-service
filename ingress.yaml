@@ -6,13 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: crypto.yourdomain.com # Replace with your domain
+  - host: crypto.yourdomain.com  # Replace with your domain
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: crypto-price-service-blue
+            name: crypto-price-service-blue  # Initially route to Blue
             port:
               number: 80
