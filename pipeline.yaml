@@ -2,7 +2,7 @@ Resources:
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      RoleArn: <your-codepipeline-role-arn>
+      RoleArn: arn:aws:iam::982081073687:role/<your-codepipeline-role>
       Stages:
         - Name: Source
           Actions:
@@ -16,8 +16,8 @@ Resources:
                 - Name: SourceArtifact
               Configuration:
                 RepositoryName: "coinbase-exchange-project"
-                Branch: "master"
-                OAuthToken: "<GitHub-Token>"
+                Branch: "main"
+                OAuthToken: "<your-github-token>"
         - Name: Build
           Actions:
             - Name: Build

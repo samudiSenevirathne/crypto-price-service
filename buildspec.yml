@@ -7,16 +7,17 @@ phases:
   pre_build:
     commands:
       - echo "Logging in to Amazon ECR..."
-      - aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-ecr-repository-url>
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 982081073687.dkr.ecr.ap-south-1.amazonaws.com
+      
   build:
     commands:
       - echo "Building the Docker image..."
       - docker build -t crypto-exchange .
-      - docker tag crypto-exchange:latest <your-ecr-repository-url>:latest
+      - docker tag crypto-exchange:latest 982081073687.dkr.ecr.ap-south-1.amazonaws.com/crypto-exchange:latest
   post_build:
     commands:
       - echo "Pushing the Docker image to ECR..."
-      - docker push <your-ecr-repository-url>:latest
+      - docker push 982081073687.dkr.ecr.ap-south-1.amazonaws.com/crypto-exchange:latest
 artifacts:
   files:
     - app.py
