@@ -17,12 +17,8 @@ phases:
     commands:
       - echo "Pushing the Docker image to ECR..."
       - docker push 982081073687.dkr.ecr.ap-south-1.amazonaws.com/crypto-exchange:latest
-      - echo "Writing imagedefinitions.json file..."
-      - printf '[{"name":"crypto-exchange","imageUri":"982081073687.dkr.ecr.ap-south-1.amazonaws.com/crypto-exchange:latest"}]' > imagedefinitions.json
-
 artifacts:
   files:
     - app.py
     - Dockerfile
     - requirements.txt
-    - imagedefinitions.json   
